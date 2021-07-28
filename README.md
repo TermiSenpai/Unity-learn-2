@@ -1,1 +1,1 @@
-Unity learn 2
+This repo is for educational purpose, if you see something that i can improve, please, say it
