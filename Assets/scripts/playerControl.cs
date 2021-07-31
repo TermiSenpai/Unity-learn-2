@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playerControl : MonoBehaviour
 {
+    public float jumpForce = 10.0f;
     public float gravityModifier = 2.0f;
     private Rigidbody playerRB;
     // Start is called before the first frame update
@@ -18,7 +19,7 @@ public class playerControl : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerRB.AddForce(Vector3.up * 10,ForceMode.Impulse);
+            playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 }
