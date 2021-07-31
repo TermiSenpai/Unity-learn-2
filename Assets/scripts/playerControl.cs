@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class playerControl : MonoBehaviour
 {
+    public float gravityModifier = 2.0f;
     private Rigidbody playerRB;
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody>();
+        Physics.gravity *= gravityModifier;
     }
 
     // Update is called once per frame
