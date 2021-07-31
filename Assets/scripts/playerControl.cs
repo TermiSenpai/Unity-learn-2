@@ -7,6 +7,9 @@ public class playerControl : MonoBehaviour
     public float jumpForce = 10.0f;
     public float gravityModifier = 2.0f;
     private Rigidbody playerRB;
+    public bool playerInFloor = true;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +20,16 @@ public class playerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && playerInFloor == true)
         {
             playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            playerInFloor = false;
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        playerInFloor = true;
+    }
+
 }
