@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class obstacleSpawn : MonoBehaviour
 {
-    public float startDelay = 1.0f;
-    public float repeatDelay = 3.0f;
+    public float delay = 1.0f;
     public GameObject[] obstacleArray;
+    int randomNumber;
+    int obstaclePos;
      
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("obstacleGenerator",startDelay,repeatDelay);
+        Invoke("obstacleGenerator",delay);
     }
 
     // Update is called once per frame
@@ -22,7 +23,15 @@ public class obstacleSpawn : MonoBehaviour
 
     void obstacleGenerator()
     {
+        obstaclePos = randomGenerator(0, obstacleArray.Length);
+        delay = randomGenerator(0, 5);
         Vector3 spawnPos = new Vector3(40, 0, 0);
-        Instantiate (obstacleArray[0], spawnPos, obstacleArray[0].transform.rotation);
+        Instantiate (obstacleArray[obstaclePos], spawnPos, obstacleArray[obstaclePos].transform.rotation);
+        Invoke("obstacleGenerator", delay);
+    }
+
+    int randomGenerator(int min, int max)
+    {
+        return Random.Range(min, max);
     }
 }
