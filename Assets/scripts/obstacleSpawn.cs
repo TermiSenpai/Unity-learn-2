@@ -8,10 +8,12 @@ public class obstacleSpawn : MonoBehaviour
     public GameObject[] obstacleArray;
     int randomNumber;
     int obstaclePos;
-     
+    private playerControl playerControlScript;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerControlScript = GameObject.Find("Player").GetComponent<playerControl>();
         Invoke("obstacleGenerator",delay);
     }
 
@@ -23,11 +25,14 @@ public class obstacleSpawn : MonoBehaviour
 
     void obstacleGenerator()
     {
+        if (playerControlScript.gameOver == false)
+        { 
         obstaclePos = randomGenerator(0, obstacleArray.Length);
         delay = randomGenerator(0, 5);
         Vector3 spawnPos = new Vector3(40, 0, 0);
         Instantiate (obstacleArray[obstaclePos], spawnPos, obstacleArray[obstaclePos].transform.rotation);
         Invoke("obstacleGenerator", delay);
+        }
     }
 
     int randomGenerator(int min, int max)
