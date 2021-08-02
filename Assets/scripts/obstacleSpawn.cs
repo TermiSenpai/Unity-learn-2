@@ -25,7 +25,7 @@ public class obstacleSpawn : MonoBehaviour
 
     void obstacleGenerator()
     {
-        if (playerControlScript.gameOver == false)
+        if (!playerControlScript.gameOver)
         { 
         obstaclePos = randomGenerator(0, obstacleArray.Length);
         delay = randomGenerator(0, 5);

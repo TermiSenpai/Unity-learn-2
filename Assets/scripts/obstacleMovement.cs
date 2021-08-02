@@ -15,7 +15,7 @@ public class obstacleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerControlScript.gameOver == false)
+        if (!playerControlScript.gameOver)
         {
             transform.Translate(Vector3.left * Time.deltaTime * movementSpeed);
         }
