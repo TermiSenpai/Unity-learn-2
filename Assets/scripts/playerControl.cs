@@ -8,6 +8,7 @@ public class playerControl : MonoBehaviour
     public float gravityModifier = 5.0f;
     private Rigidbody playerRB;
     public bool playerInFloor = true;
+    public bool gameOver = false;
 
 
     // Start is called before the first frame update
@@ -29,7 +30,15 @@ public class playerControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        playerInFloor = true;
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            playerInFloor = true;
+        }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("Game over");
+            gameOver = true;
+        }
     }
 
 }
