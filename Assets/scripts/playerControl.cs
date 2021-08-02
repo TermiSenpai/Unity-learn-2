@@ -44,8 +44,8 @@ public class playerControl : MonoBehaviour
         {
             Debug.Log("Game over");
             gameOver = true;
-            playerAnim.speed = 0;
-            playerAnim.SetTrigger("Death_b");
+            playerAnim.SetBool("Death_b",true);
+            playerAnim.SetInteger("DeathType_int", 1);
         }
     }
 
