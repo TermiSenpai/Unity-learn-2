@@ -28,7 +28,7 @@ public class obstacleSpawn : MonoBehaviour
         if (!playerControlScript.gameOver)
         { 
         obstaclePos = randomGenerator(0, obstacleArray.Length);
-        delay = randomGenerator(0, 5);
+        delay = randomGenerator(1, 5);
         Vector3 spawnPos = new Vector3(40, 0, 0);
         Instantiate (obstacleArray[obstaclePos], spawnPos, obstacleArray[obstaclePos].transform.rotation);
         Invoke("obstacleGenerator", delay);
