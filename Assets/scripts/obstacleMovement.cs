@@ -18,7 +18,7 @@ public class obstacleMovement : MonoBehaviour
         if (!playerControlScript.gameOver)
         {
             transform.Translate(Vector3.left * Time.deltaTime * movementSpeed);
-            movementSpeed = Random.Range(20, 25);
+            movementSpeed = Random.Range(20, 30);
         }
     }
 }
