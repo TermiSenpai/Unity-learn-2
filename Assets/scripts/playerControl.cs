@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class playerControl : MonoBehaviour
 {
     public float jumpForce = 10.0f;
@@ -10,11 +12,12 @@ public class playerControl : MonoBehaviour
     public bool playerInFloor = true;
     public bool gameOver = false;
     private Animator playerAnim;
-
+    AudioSource jump;
 
     // Start is called before the first frame update
     void Start()
     {
+        jump = GetComponent<AudioSource>();
         playerRB = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
         playerAnim = GetComponent<Animator>();
@@ -27,6 +30,7 @@ public class playerControl : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space) && playerInFloor == true)
             {
+                jump.Play(0);
                 playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 playerInFloor = false;
                 playerAnim.SetTrigger("Jump_trig");
