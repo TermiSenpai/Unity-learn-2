@@ -6,21 +6,23 @@ using UnityEngine;
 
 public class playerControl : MonoBehaviour
 {
-    AudioSource jump;
+    public AudioClip jump;
+    public AudioClip death;
+    private AudioSource playerSound;
     private Animator playerAnim;
     private Rigidbody playerRB;
     public ParticleSystem explosion;
     public ParticleSystem dirt;
 
-    public float jumpForce = 100.0f;
-    public float gravityModifier = 5.0f;
+    public float jumpForce = 700.0f;
+    public float gravityModifier = 2.0f;
     public bool playerInFloor = true;
     public bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        jump = GetComponent<AudioSource>();
+        playerSound = GetComponent<AudioSource>();
         playerRB = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
         playerAnim = GetComponent<Animator>();
@@ -32,11 +34,11 @@ public class playerControl : MonoBehaviour
         if (!gameOver)
         {
             if (Input.GetKeyDown(KeyCode.Space) && playerInFloor == true)
-            {
-                jump.Play(0);
+            {                
                 playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 playerInFloor = false;
                 playerAnim.SetTrigger("Jump_trig");
+                playerSound.PlayOneShot(jump,1);
             }
         }
     }
@@ -55,6 +57,7 @@ public class playerControl : MonoBehaviour
             gameOver = true;
             playerAnim.SetBool("Death_b",true);
             playerAnim.SetInteger("DeathType_int", 1);
+            playerSound.PlayOneShot(death,0.7f);
         }
     }
 
