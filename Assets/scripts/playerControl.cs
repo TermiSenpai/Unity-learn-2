@@ -6,13 +6,16 @@ using UnityEngine;
 
 public class playerControl : MonoBehaviour
 {
-    public float jumpForce = 10.0f;
-    public float gravityModifier = 5.0f;
+    AudioSource jump;
+    private Animator playerAnim;
     private Rigidbody playerRB;
+    public ParticleSystem explosion;
+    public ParticleSystem dirt;
+
+    public float jumpForce = 100.0f;
+    public float gravityModifier = 5.0f;
     public bool playerInFloor = true;
     public bool gameOver = false;
-    private Animator playerAnim;
-    AudioSource jump;
 
     // Start is called before the first frame update
     void Start()
@@ -42,10 +45,12 @@ public class playerControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            dirt.Play();
             playerInFloor = true;
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
+            explosion.Play();
             Debug.Log("Game over");
             gameOver = true;
             playerAnim.SetBool("Death_b",true);
