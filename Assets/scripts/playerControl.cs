@@ -50,7 +50,7 @@ public class playerControl : MonoBehaviour
             dirt.Play();
             playerInFloor = true;
         }
-        else if (collision.gameObject.CompareTag("Obstacle"))
+        else if (collision.gameObject.CompareTag("Obstacle") && playerAnim.GetBool("Death_b") != true)
         {
             explosion.Play();
             Debug.Log("Game over");
