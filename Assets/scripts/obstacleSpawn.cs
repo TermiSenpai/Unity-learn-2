@@ -14,24 +14,24 @@ public class obstacleSpawn : MonoBehaviour
     void Start()
     {
         playerControlScript = GameObject.Find("Player").GetComponent<playerControl>();
-        Invoke("obstacleGenerator",delay);
+        Invoke("obstacleGenerator", delay);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void obstacleGenerator()
     {
         if (!playerControlScript.gameOver)
-        { 
-        obstaclePos = randomGenerator(0, obstacleArray.Length);
-        delay = randomGenerator(1, 5);
-        Vector3 spawnPos = new Vector3(40, 0, 0);
-        Instantiate (obstacleArray[obstaclePos], spawnPos, obstacleArray[obstaclePos].transform.rotation);
-        Invoke("obstacleGenerator", delay);
+        {
+            obstaclePos = randomGenerator(0, obstacleArray.Length);
+            delay = randomGenerator(1, 3);
+            Vector3 spawnPos = new Vector3(40, 0, 0);
+            Instantiate(obstacleArray[obstaclePos], spawnPos, obstacleArray[obstaclePos].transform.rotation);
+            Invoke("obstacleGenerator", delay);
         }
     }
 
